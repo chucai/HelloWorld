@@ -1,6 +1,8 @@
 'use strict';
 
 var React = require('react-native');
+var Post = require('./App/Views/Post/Post');
+var styles = require('./App/Views/Posts/styles');
 
 var {
   StyleSheet,
@@ -19,12 +21,30 @@ var SearchResults =  React.createClass({
     };
   },
 
+  rowPressed: function(propertyGuid){
+    var property = this.props.listings.filter(prop => prop.guid === propertyGuid)[0];
+    this.props.navigator.push({
+      title: 'Property',
+      component: Post,
+      passProps: { property: property }
+    });
+  },
+
   renderRow: function(rowData, sectionID, rowID){
+    var price = rowData.price_formatted.split(' ')[0];
     return (
-      <TouchableHighlight
-        underlayColor="#dddddd">
+      <TouchableHighlight underlayColor="#dddddd"
+        onPress={()=>this.rowPressed(rowData.guid)}>
         <View>
-          <Text> {rowData.title} </Text>
+          <View style={styles.rowContainer}>
+            <Image style={styles.thumb} source={{ uri: rowData.img_url }} />
+            <View  style={styles.textContainer}>
+              <Text style={styles.price}>£{price}</Text>
+              <Text style={styles.title}
+              numberOfLines={1}>{rowData.title}</Text>
+            </View>
+          </View>
+          <View style={styles.separator}/>
         </View>
       </TouchableHighlight>
     );
