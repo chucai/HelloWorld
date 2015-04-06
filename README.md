@@ -8,9 +8,9 @@
 ## 简单介绍
 包括三个页面: 搜索页面，搜索列表，产品页面。
 
-![Alt text](./search.png)
-![Alt text](./list.png)
-![Alt text](./post.png)
+![Alt text](https://raw.githubusercontent.com/chucai/HelloWorld/master/images/search.png)
+![Alt text](https://raw.githubusercontent.com/chucai/HelloWorld/master/images/list.png)
+![Alt text](https://raw.githubusercontent.com/chucai/HelloWorld/master/images/post.png)
 
 可以点击 `search`页面的 `Go` 跳到 `List` 页面。
 文件的基本目录是:
