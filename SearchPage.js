@@ -1,6 +1,7 @@
 'use strict';
 
 var React = require('react-native');
+var SearchResults = require('./SearchResults');
 
 var {
   StyleSheet,
@@ -9,8 +10,7 @@ var {
   View,
   TouchableHighlight,
   ActivityIndicatorIOS,
-  Image,
-  Component
+  Image
 } = React;
 
 function urlForQueryAndPage(key, value, pageNumber) {
@@ -63,13 +63,19 @@ var SearchPage = React.createClass({
           isLoading: false,
           message: 'Something bad happend' + error
         });
-      });
+      }).done();
   },
 
   _handleResponse: function(response){
     this.setState({isLoading: false, message: ''});
     if (response.application_response_code.substr(0, 1) === '1'){
       console.log('properties found: ' + response.listings.length);
+      this.props.navigator.push({
+        title: 'Result',
+        component: SearchResults,
+        passProps: { listings: response.listings }
+      });
+      // this.props.navigator.pop();
     } else {
       this.setState({message: 'Location not recognized; please try again'});
     }
@@ -84,11 +90,11 @@ var SearchPage = React.createClass({
     return (
       <View style={styles.container}>
         <Text style={styles.description}>
-         Search for houses to buy!
+           Search for houses to buy!
         </Text>
-      <Text style={styles.description}>
-         Search by place-name, postcode or search near your location.
-      </Text>
+        <Text style={styles.description}>
+           Search by place-name, postcode or search near your location.
+        </Text>
         <View style={styles.flowRight}>
           <TextInput
             style={styles.searchInput}
