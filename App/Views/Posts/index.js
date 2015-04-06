@@ -1,8 +1,9 @@
 'use strict';
 
 var React = require('react-native');
-var Post = require('./App/Views/Post/Post');
-var styles = require('./App/Views/Posts/styles');
+
+var Post = require('../Post');
+var styles = require('./styles');
 
 var {
   StyleSheet,
@@ -13,7 +14,7 @@ var {
   Text
 } = React;
 
-var SearchResults =  React.createClass({
+var Posts =  React.createClass({
   getInitialState: function() {
     var dataSource = new ListView.DataSource({rowHasChanged: (r1, r2) => r1.guid !== r2.guid});
     return {
@@ -60,4 +61,4 @@ var SearchResults =  React.createClass({
 
 });
 
-module.exports = SearchResults;
+module.exports = Posts;

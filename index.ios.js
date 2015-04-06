@@ -5,7 +5,7 @@
 'use strict';
 
 var React = require('react-native');
-var SearchPage = require('./SearchPage');
+var SearchPage = require('./App/Views/Search');
 
 var {
   AppRegistry,
@@ -46,8 +46,8 @@ var styles = StyleSheet.create({
     flex: 1
   },
   description: {
-    marginBottom: 20, 
-    fontSize: 18, 
+    marginBottom: 20,
+    fontSize: 18,
     textAlign: 'center',
     color: '#656565'
   },
